@@ -4,28 +4,41 @@ var randomNumber = function(min, max) {
     return value;
 }
 
+var fightOrRun = function() {
+    // ask player if they'd like to fight or run
+    var promptFight = window.prompt('Would you like to FIGHT this battle or RUN AWAY? Enter "FIGHT" or "RUN" to continue.');
+
+    // call conditional recursive function
+    if (!promptFight) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrRun();
+    }
+
+    promptFight = promptFight.toUpperCase();
+
+    // if player picks RUN confirm and then stop the loop
+    if (promptFight === "RUN") {
+        var confirmRun = window.confirm("Are you sure you'd like to run away?");
+        if (confirmRun) {
+            window.alert(playerInfo.name + " has decided to run away!");
+            // subtract money from player for running
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 // define fight function
 var fight = function (enemy) {
     console.log(enemy);
 
+    // repeate and execute as long as player and enemy are both alive
     while (playerInfo.health > 0 && enemy.health > 0) {
-        // ask player if they'd like to fight or run
-        var promptFight = window.prompt("Would you like to FIGHT this battle or RUN? Enter 'FIGHT' or 'RUN' to choose.");
-
-        // if player picks "RUN" confirm and then stop the loop
-        if (promptFight === "run" || promptFight === "RUN") {
-            // confirm player wants to run
-            var confirmSkip = window.confirm("Are you sure you'd like to run away?");
-
-            // if yes (true), leave fight
-            if (confirmSkip) {
-                window.alert(playerInfo.name + " has decided to run away!");
-                //subtract money from playerInfo.money for skipping
-                playerInfo.money = Math.max(0, playerInfo.money - 10);
-                console.log("playerInfo.money", playerInfo.money);
-                break;
-            }
-        }
+        if (fightOrRun()) {
+            break;
+        };
 
         // subtract player's attack force from enemy's health
         var damage = randomNumber(playerInfo.attack -3, playerInfo.attack);
