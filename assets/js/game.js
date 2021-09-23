@@ -6,7 +6,7 @@ var playerMoney = 10;
 
 // set enemy stats
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyAttack = 12;
+var enemyAttack = 14;
 
 // function to generate random whole number between 40 and 60.
 var randomNumber = function(min, max) {
@@ -52,7 +52,7 @@ var fight = function (enemyName) {
         }
 
         // subtract enemy's attack force from player's health
-        var damage = randomNumber(enemyAttack - 3, enemyAttack);
+        var damage = randomNumber(enemyAttack - 4, enemyAttack);
         playerHealth = Math.max(0, playerHealth - damage);
         console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
