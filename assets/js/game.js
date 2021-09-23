@@ -134,11 +134,11 @@ var enemyInfo = [
     },
     {
         name: "Amy Android",
-        attack: randomNumber(11, 15)
+        attack: randomNumber(10, 14)
     },
     {
         name: "Robo Trumble",
-        attack: randomNumber(12, 16)
+        attack: randomNumber(10, 14)
     }
 ];
 
@@ -171,9 +171,6 @@ var startGame = function () {
                     shop();
                 }
             }
-        } else {
-            window.alert("You have lost your robot in battle! Game over!");
-            break;
         }
     }
 
@@ -188,6 +185,20 @@ var endGame = function () {
         window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
     } else {
         window.alert("Game over! You lost your robot in battle.");
+    }
+
+    // check highscore
+    var highScore = localStorage.getItem("highScore");
+
+    // check if player beat high score
+    if (highScore != null || playerInfo.money > 0) {
+        if (playerInfo.money > highScore) {
+            localStorage.setItem("highScore", playerInfo.money);
+            localStorage.setItem("highScoreName", playerInfo.name);
+            alert("You beat the high score! " + playerInfo.name + " now holds the high score of " + playerInfo.money + "!")
+        } else {
+            alert(localStorage.getItem("highScoreName") + " still holds the high score of " + localStorage.getItem("highScore") + ".")
+        }
     }
 
     // play again?
