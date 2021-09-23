@@ -59,9 +59,21 @@ var fight = function (enemy) {
     } // end while
 }; // end fight()
 
-// set player stats
+//function to set name
+var getPlayerName = function() {
+    var name = "";
+
+    while (name === "" || name === null) {
+        name = prompt("What's your robot's name?", "Tony the Robot");
+    }
+
+    console.log("Your robot's name is " + name);
+    return name;
+}
+
+/* GAME INFORMATION / VARIABLES */
 var playerInfo = {
-    name: window.prompt("What is your robot's name?", "Tony the Robot"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -114,6 +126,7 @@ var startGame = function () {
     for (var i = 0; i < enemyInfo.length; i++) {
         if (playerInfo.health > 0) {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+            debugger;
 
             // pick which enemy to fight
             var pickedEnemyObj = enemyInfo[i];
