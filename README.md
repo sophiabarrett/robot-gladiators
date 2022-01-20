@@ -1,7 +1,7 @@
 # Robot Gladiators
 
 ## Description 
-Back end for a simple combat simulator game. This MVP can be played in the browser as is via the browser's dialog boxes.
+Simple combat simulator game. This MVP can be played in the browser as is via the browser's dialog boxes.
 
 ## Languages Used
 * JavaScript
